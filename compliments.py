@@ -22,7 +22,7 @@ data = {
 
 
 txtoutput_path = '/tmp/ki_audio.txt'
-mp3output_path = '/tmp/ki_audio.mp3'
+wavoutput_path = '/tmp/ki_audio.wav'
 model_path = '/home/pi/piper/de_DE-thorsten-high.onnx'
 piper_path = '/home/pi/piper/piper'
 
@@ -50,12 +50,12 @@ try:
         piper_command = [
             piper_path,
             "-m", model_path,
-            "-f", mp3output_path
+            "-f", wavoutput_path
         ]
         subprocess.run(piper_command, input=file_content, text=True, check=True)
 
         # Abspielen der MP3-Datei
-        aplay_command = ["aplay", mp3output_path]
+        aplay_command = ["aplay", wavoutput_path]
         subprocess.run(aplay_command, check=True)
         
     else:
